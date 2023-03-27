@@ -10,7 +10,7 @@ configure_file(input : 'src/Version.hpp.in',
 )
 #configuration_inc = include_directories('.')
 
-library('LDtkloader',
+LDtkLoader_lib = library('LDtkLoader',
  'src/DataTypes.cpp'
 ,'src/Entity.cpp'
 ,'src/EntityDef.cpp'
@@ -46,4 +46,7 @@ library('LDtkloader',
 ,'include/LDtkLoader/thirdparty/optional.hpp'
 , include_directories : incdir
 )
+
+LDtkLoader_dep = declare_dependency(include_directories : incdir,
+  link_with : LDtkLoader_lib)
 
