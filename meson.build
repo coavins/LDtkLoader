@@ -1,6 +1,6 @@
-project('LDtkloader', 'cpp', version: '1.2.2')
+project('LDtkloader', 'cpp', version: '1.2.2', default_options: ['default_library=static'])
 
-incdir = include_directories('builddir/include')
+incdir = include_directories('builddir/include','include')
 
 conf_data = configuration_data()
 conf_data.set('PROJECT_VERSION', '1.2.2')
@@ -10,12 +10,13 @@ configure_file(input : 'src/Version.hpp.in',
 )
 #configuration_inc = include_directories('.')
 
-executable('LDtkloader',
+library('LDtkloader',
  'src/DataTypes.cpp'
 ,'src/Entity.cpp'
 ,'src/EntityDef.cpp'
 ,'src/Enum.cpp'
 ,'src/FieldsContainer.cpp'
+,'src/json.hpp'
 ,'src/Layer.cpp'
 ,'src/LayerDef.cpp'
 ,'src/Level.cpp'
@@ -43,10 +44,6 @@ executable('LDtkloader',
 ,'include/LDtkLoader/defs/LayerDef.hpp'
 ,'include/LDtkLoader/thirdparty/json_fwd.hpp'
 ,'include/LDtkLoader/thirdparty/optional.hpp'
-#,'include/src/json.hpp'
-#,'build/include/LDtkLoader/generated/Version.hpp'
-#, include_directories : configuration_inc
-
 , include_directories : incdir
 )
 
